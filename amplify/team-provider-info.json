@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bigdataproject-dev-ccafd-authRole",
+      "UnauthRoleArn": "arn:aws:iam::626635428874:role/amplify-bigdataproject-dev-ccafd-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::626635428874:role/amplify-bigdataproject-dev-ccafd-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-bigdataproject-dev-ccafd-deployment",
+      "UnauthRoleName": "amplify-bigdataproject-dev-ccafd-unauthRole",
+      "StackName": "amplify-bigdataproject-dev-ccafd",
+      "StackId": "arn:aws:cloudformation:eu-west-1:626635428874:stack/amplify-bigdataproject-dev-ccafd/f3b675b0-e210-11ef-a204-0213499660cd",
+      "AmplifyAppId": "d3cpair2i03c6t"
+    },
+    "categories": {
+      "storage": {
+        "avis": {},
+        "restaurant": {}
+      }
+    }
+  }
+}
