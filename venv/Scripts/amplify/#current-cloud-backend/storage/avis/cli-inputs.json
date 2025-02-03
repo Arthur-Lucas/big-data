@@ -1,0 +1,10 @@
+{
+  "resourceName": "avis",
+  "tableName": "avis",
+  "partitionKey": {
+    "fieldName": "idavis",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

@@ -1,0 +1,14 @@
+{
+  "aws_project_region": "eu-west-1",
+  "aws_dynamodb_all_tables_region": "eu-west-1",
+  "aws_dynamodb_table_schemas": [
+    {
+      "tableName": "restaurant-dev",
+      "region": "eu-west-1"
+    },
+    {
+      "tableName": "avis-dev",
+      "region": "eu-west-1"
+    }
+  ]
+}
