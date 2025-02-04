@@ -17,5 +17,31 @@
         "restaurant": {}
       }
     }
+  },
+  "arthur": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bigdataproject-arthur-62e45-authRole",
+      "UnauthRoleArn": "arn:aws:iam::626635428874:role/amplify-bigdataproject-arthur-62e45-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::626635428874:role/amplify-bigdataproject-arthur-62e45-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+      "UnauthRoleName": "amplify-bigdataproject-arthur-62e45-unauthRole",
+      "StackName": "amplify-bigdataproject-arthur-62e45",
+      "StackId": "arn:aws:cloudformation:eu-west-1:626635428874:stack/amplify-bigdataproject-arthur-62e45/1a2e7310-e21f-11ef-a322-02766d49223d",
+      "AmplifyAppId": "d3cpair2i03c6t"
+    },
+    "categories": {
+      "function": {
+        "persistdata": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/persistdata-55615a4e526e47774e70-build.zip"
+        },
+        "scrap": {}
+      },
+      "storage": {
+        "avis": {},
+        "restaurant": {}
+      }
+    }
   }
 }
