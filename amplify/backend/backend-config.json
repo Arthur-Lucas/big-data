@@ -1,27 +1,63 @@
 {
-  "function": {
-    "datatograph": {
-      "build": true,
+  "api": {
+    "restaurant": {
       "dependsOn": [
         {
           "attributes": [
             "Name",
-            "Arn",
-            "StreamArn"
+            "Arn"
           ],
-          "category": "storage",
-          "resourceName": "avis"
+          "category": "function",
+          "resourceName": "getRestaurants"
         },
         {
           "attributes": [
             "Name",
-            "Arn",
-            "StreamArn"
+            "Arn"
           ],
-          "category": "storage",
-          "resourceName": "restaurant"
+          "category": "function",
+          "resourceName": "getRestaurant"
         }
       ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "bigdataproject8381536b": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "getRestaurant": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getRestaurants": {
+      "build": true,
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -77,19 +113,51 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_datatograph_deploymentBucketName": {
+    "AMPLIFY_function_getRestaurant_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "datatograph"
+          "resourceName": "getRestaurant"
         }
       ]
     },
-    "AMPLIFY_function_datatograph_s3Key": {
+    "AMPLIFY_function_getRestaurant_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "datatograph"
+          "resourceName": "getRestaurant"
+        }
+      ]
+    },
+    "AMPLIFY_function_getRestaurants_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getRestaurants"
+        }
+      ]
+    },
+    "AMPLIFY_function_getRestaurants_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getRestaurants"
+        }
+      ]
+    },
+    "AMPLIFY_function_refactordata_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "refactordata"
+        }
+      ]
+    },
+    "AMPLIFY_function_refactordata_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "refactordata"
         }
       ]
     },
@@ -114,6 +182,11 @@
     "avis": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
+    },
+    "bigdata": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     },
     "restaurant": {
       "providerPlugin": "awscloudformation",

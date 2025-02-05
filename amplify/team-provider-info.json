@@ -28,7 +28,8 @@
       "UnauthRoleName": "amplify-bigdataproject-arthur-62e45-unauthRole",
       "StackName": "amplify-bigdataproject-arthur-62e45",
       "StackId": "arn:aws:cloudformation:eu-west-1:626635428874:stack/amplify-bigdataproject-arthur-62e45/1a2e7310-e21f-11ef-a322-02766d49223d",
-      "AmplifyAppId": "d3cpair2i03c6t"
+      "AmplifyAppId": "d3cpair2i03c6t",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-bigdataproject-arthur-62e45-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "function": {
@@ -36,14 +37,28 @@
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
           "s3Key": "amplify-builds/scrap-4a6752545a7570656e4d-build.zip"
         },
-        "datatograph": {
+        "refactordata": {
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
-          "s3Key": "amplify-builds/datatograph-45316843516170716c6f-build.zip"
+          "s3Key": "amplify-builds/refactordata-4377496730514d2f7232-build.zip"
         },
-        "refactordata": {}
+        "getRestaurants": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/getRestaurants-304c6943615a4e644749-build.zip"
+        },
+        "getRestaurant": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/getRestaurant-44744d7a7a6d3852724a-build.zip"
+        }
       },
       "storage": {
         "avis": {},
+        "restaurant": {},
+        "bigdata": {}
+      },
+      "auth": {
+        "bigdataproject8381536b": {}
+      },
+      "api": {
         "restaurant": {}
       }
     }

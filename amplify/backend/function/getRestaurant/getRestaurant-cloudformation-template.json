@@ -15,30 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "storageavisName": {
-      "Type": "String",
-      "Default": "storageavisName"
-    },
-    "storageavisArn": {
-      "Type": "String",
-      "Default": "storageavisArn"
-    },
-    "storageavisStreamArn": {
-      "Type": "String",
-      "Default": "storageavisStreamArn"
-    },
-    "storagerestaurantName": {
-      "Type": "String",
-      "Default": "storagerestaurantName"
-    },
-    "storagerestaurantArn": {
-      "Type": "String",
-      "Default": "storagerestaurantArn"
-    },
-    "storagerestaurantStreamArn": {
-      "Type": "String",
-      "Default": "storagerestaurantStreamArn"
     }
   },
   "Conditions": {
@@ -71,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "datatograph",
+            "getRestaurant",
             {
               "Fn::Join": [
                 "",
                 [
-                  "datatograph",
+                  "getRestaurant",
                   "-",
                   {
                     "Ref": "env"
@@ -93,24 +69,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_AVIS_NAME": {
-              "Ref": "storageavisName"
-            },
-            "STORAGE_AVIS_ARN": {
-              "Ref": "storageavisArn"
-            },
-            "STORAGE_AVIS_STREAMARN": {
-              "Ref": "storageavisStreamArn"
-            },
-            "STORAGE_RESTAURANT_NAME": {
-              "Ref": "storagerestaurantName"
-            },
-            "STORAGE_RESTAURANT_ARN": {
-              "Ref": "storagerestaurantArn"
-            },
-            "STORAGE_RESTAURANT_STREAMARN": {
-              "Ref": "storagerestaurantStreamArn"
             }
           }
         },
@@ -119,7 +77,7 @@
         },
         "Runtime": "python3.13",
         "Layers": [],
-        "Timeout": 25
+        "Timeout": 29
       }
     },
     "LambdaExecutionRole": {
@@ -128,12 +86,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "bigdataprojectLambdaRole5c1c0c29",
+            "bigdataprojectLambdaRolea4008ae9",
             {
               "Fn::Join": [
                 "",
                 [
-                  "bigdataprojectLambdaRole5c1c0c29",
+                  "bigdataprojectLambdaRolea4008ae9",
                   "-",
                   {
                     "Ref": "env"
@@ -193,93 +151,6 @@
                   }
                 ]
               }
-            }
-          ]
-        }
-      }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:PartiQLInsert",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:PartiQLSelect",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:PartiQLUpdate"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageavisArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageavisArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:PartiQLInsert",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:PartiQLSelect",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:PartiQLUpdate"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagerestaurantArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagerestaurantArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
             }
           ]
         }

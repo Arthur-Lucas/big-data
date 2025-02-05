@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.14.2\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -115,7 +115,10 @@
           }
         },
         "Role": {
-          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
         },
         "Runtime": "python3.13",
         "Layers": [],
@@ -149,16 +152,22 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": ["lambda.amazonaws.com"]
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
               },
-              "Action": ["sts:AssumeRole"]
+              "Action": [
+                "sts:AssumeRole"
+              ]
             }
           ]
         }
       }
     },
     "lambdaexecutionpolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
@@ -199,7 +208,9 @@
       }
     },
     "AmplifyResourcesPolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "amplify-lambda-execution-policy",
@@ -294,7 +305,10 @@
     },
     "Arn": {
       "Value": {
-        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
       }
     },
     "Region": {
@@ -305,6 +319,14 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "LambdaExecutionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
       }
     }
   }
