@@ -56,7 +56,7 @@ def handler(event, context):
 
             restaurants_table.put_item(
                 Item={
-                    "idrestaurant": restaurant_name,
+                    "idrestaurant": restaurant_name.encode('utf-8').decode('utf-8'),
                     "note_moyenne": Decimal(str(round(note_moyenne, 1))),  # Conversion en Decimal
                     "sentiment_global": sentiment_global,
                     "mots_frequents": most_used_words
@@ -68,7 +68,7 @@ def handler(event, context):
                 avis_table.put_item(
                     Item={
                         "idavis": f"{restaurant_name}-{i}",
-                        "idrestaurant": restaurant_name,
+                        "idrestaurant": restaurant_name.encode('utf-8').decode('utf-8'),
                         "avis": review,
                         "sentiment": sentiment,
                         "mots_frequents": mots_avis
