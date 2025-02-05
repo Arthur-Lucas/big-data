@@ -67,6 +67,22 @@
           "resourceName": "persistdata"
         }
       ]
+    },
+    "AMPLIFY_function_scrap_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "scrap"
+        }
+      ]
+    },
+    "AMPLIFY_function_scrap_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "scrap"
+        }
+      ]
     }
   },
   "storage": {

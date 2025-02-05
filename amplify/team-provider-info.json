@@ -34,9 +34,12 @@
       "function": {
         "persistdata": {
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
-          "s3Key": "amplify-builds/persistdata-55615a4e526e47774e70-build.zip"
+          "s3Key": "amplify-builds/persistdata-6a494735334557343973-build.zip"
         },
-        "scrap": {}
+        "scrap": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/scrap-7552484d716a43485954-build.zip"
+        }
       },
       "storage": {
         "avis": {},

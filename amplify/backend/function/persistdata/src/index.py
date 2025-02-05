@@ -4,22 +4,19 @@ import boto3
 import stanza
 import re
 import torch
-from collections import Counter
+from collections import defaultdict, Counter
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from decimal import Decimal
-
 
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-1')
 restaurants_table = dynamodb.Table('restaurant-'+os.environ['ENV'])
 avis_table = dynamodb.Table('avis-'+os.environ['ENV'])
 
-
 model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
-
-stanza.download('en') 
+stanza.download('en')
 nlp = stanza.Pipeline('en', processors='tokenize,mwt,pos,lemma')
 
 def analyser_sentiment(avis):
@@ -39,59 +36,68 @@ def get_most_used_words(avis):
     words = [word.lemma for sentence in doc.sentences for word in sentence.words if word.upos in ['NOUN', 'ADJ', 'VERB']]
     return [word for word, _ in Counter(words).most_common(10)]
 
-def handler(event, context):
-    for restaurant_data in event:
+def fetch_data():
+    
+    restaurants = {item["idrestaurant"]: item for item in restaurants_table.scan()["Items"]}
+    print(restaurants)
+    avis = avis_table.scan()["Items"]
+
+    grouped_reviews = defaultdict(list)
+    for review in avis:
+        grouped_reviews[review["idrestaurant"]].append(review["avis"])
+
+    return restaurants, grouped_reviews
+
+def process_data():
+    
+    restaurants, grouped_reviews = fetch_data()
+
+    for restaurant_id, reviews in grouped_reviews.items():
         try:
-            restaurant_name = restaurant_data["restaurant"]
-            reviews = restaurant_data["reviews"]
-            
-            if not reviews:
-                continue
-            
             sentiments = analyser_sentiment(reviews)
             note_moyenne = sum(5 if s == "Positif" else 3 if s == "Neutre" else 1 for s in sentiments) / len(sentiments)
             sentiment_global = "Positif" if sentiments.count("Positif") > sentiments.count("Négatif") else "Négatif" if sentiments.count("Négatif") > sentiments.count("Positif") else "Neutre"
             most_used_words = get_most_used_words(reviews)
+            adresse = restaurants.get(restaurant_id, {}).get("adresse", "Inconnue")
 
-
+            
             restaurants_table.put_item(
                 Item={
-                    "idrestaurant": restaurant_name.encode('utf-8').decode('utf-8'),
-                    "note_moyenne": Decimal(str(round(note_moyenne, 1))),  # Conversion en Decimal
+                    "idrestaurant": restaurant_id,
+                    "adresse": adresse,
+                    "note_moyenne": Decimal(str(round(note_moyenne, 1))),
                     "sentiment_global": sentiment_global,
                     "mots_frequents": most_used_words
                 }
             )
 
-            for i, (review, sentiment) in enumerate(zip(reviews, sentiments)):
-                mots_avis = get_most_used_words([review])
-                avis_table.put_item(
-                    Item={
-                        "idavis": f"{restaurant_name}-{i}",
-                        "idrestaurant": restaurant_name.encode('utf-8').decode('utf-8'),
-                        "avis": review,
-                        "sentiment": sentiment,
-                        "mots_frequents": mots_avis
-                    }
-                )
+            
+            for review in avis_table.scan()["Items"]:
+                if review["idrestaurant"] == restaurant_id:
+                    mots_avis = get_most_used_words([review["avis"]])
+                    avis_table.put_item(
+                        Item={
+                            "idavis": review["idavis"],
+                            "idrestaurant": review["idrestaurant"],
+                            "avis": review["avis"],
+                            "sentiment": analyser_sentiment([review["avis"]])[0],
+                            "mots_frequents": mots_avis
+                        }
+                    )
 
-            print(f"Donnees inserees pour {restaurant_name}")
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Access-Control-Allow-Headers': '*',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-                },
-                'body': json.dumps(f"Donnees inserees pour {restaurant_name}")
-            }
+            print(f"Données mises à jour pour {restaurant_id}")
+
         except Exception as e:
-            print(f"Erreur avec {restaurant_data.get('restaurant', 'inconnu')}: {str(e)}")
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Access-Control-Allow-Headers': '*',
-                    'Access-Control-Allow-Origin': '*',
-                },
-                'body': json.dumps("Erreur cote serveur")
-            }
+            print(f"Erreur avec {restaurant_id}: {str(e)}")
+
+def handler(event, context):
+    process_data()
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': json.dumps("Donnees mises a jour avec succes")
+    }
