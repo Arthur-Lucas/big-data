@@ -32,14 +32,15 @@
     },
     "categories": {
       "function": {
-        "persistdata": {
-          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
-          "s3Key": "amplify-builds/persistdata-6a494735334557343973-build.zip"
-        },
         "scrap": {
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
-          "s3Key": "amplify-builds/scrap-7552484d716a43485954-build.zip"
-        }
+          "s3Key": "amplify-builds/scrap-4a6752545a7570656e4d-build.zip"
+        },
+        "datatograph": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/datatograph-45316843516170716c6f-build.zip"
+        },
+        "refactordata": {}
       },
       "storage": {
         "avis": {},

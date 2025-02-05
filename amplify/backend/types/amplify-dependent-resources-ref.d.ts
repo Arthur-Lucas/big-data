@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "function": {
-    "persistdata": {
+    "datatograph": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

@@ -1,6 +1,31 @@
 {
   "function": {
-    "persistdata": {
+    "datatograph": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "avis"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "restaurant"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "refactordata": {
       "build": true,
       "dependsOn": [
         {
@@ -52,19 +77,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_persistdata_deploymentBucketName": {
+    "AMPLIFY_function_datatograph_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "persistdata"
+          "resourceName": "datatograph"
         }
       ]
     },
-    "AMPLIFY_function_persistdata_s3Key": {
+    "AMPLIFY_function_datatograph_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "persistdata"
+          "resourceName": "datatograph"
         }
       ]
     },
