@@ -15,6 +15,18 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "storagerestaurantName": {
+      "Type": "String",
+      "Default": "storagerestaurantName"
+    },
+    "storagerestaurantArn": {
+      "Type": "String",
+      "Default": "storagerestaurantArn"
+    },
+    "storagerestaurantStreamArn": {
+      "Type": "String",
+      "Default": "storagerestaurantStreamArn"
     }
   },
   "Conditions": {
@@ -69,11 +81,23 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "STORAGE_RESTAURANT_NAME": {
+              "Ref": "storagerestaurantName"
+            },
+            "STORAGE_RESTAURANT_ARN": {
+              "Ref": "storagerestaurantArn"
+            },
+            "STORAGE_RESTAURANT_STREAMARN": {
+              "Ref": "storagerestaurantStreamArn"
             }
           }
         },
         "Role": {
-          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
         },
         "Runtime": "python3.13",
         "Layers": [],
@@ -107,16 +131,22 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": ["lambda.amazonaws.com"]
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
               },
-              "Action": ["sts:AssumeRole"]
+              "Action": [
+                "sts:AssumeRole"
+              ]
             }
           ]
         }
       }
     },
     "lambdaexecutionpolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
@@ -155,6 +185,53 @@
           ]
         }
       }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:PartiQLSelect"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagerestaurantArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagerestaurantArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   },
   "Outputs": {
@@ -165,7 +242,10 @@
     },
     "Arn": {
       "Value": {
-        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
       }
     },
     "Region": {
@@ -180,7 +260,10 @@
     },
     "LambdaExecutionRoleArn": {
       "Value": {
-        "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
       }
     }
   }

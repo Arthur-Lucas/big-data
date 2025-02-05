@@ -52,12 +52,42 @@
   "function": {
     "getRestaurant": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "avis"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "restaurant"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
     "getRestaurants": {
       "build": true,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "restaurant"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
