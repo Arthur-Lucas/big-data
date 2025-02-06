@@ -1,0 +1,18 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "storage": {
+      "avis": [
+        "read"
+      ],
+      "restaurant": [
+        "read"
+      ],
+      "bigdata": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  }
+}

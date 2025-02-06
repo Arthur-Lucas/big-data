@@ -1,0 +1,19 @@
+[
+  {
+    "restaurant": "le-comptoir-de-la-gastronomie-paris",
+    "adresse": "34 Rue Montmartre, 75001 Paris",
+    "reviews": [
+      "Le Comptoir de la Gastronomie has a cozy atmosphere and a decent menu. The food was fine, but nothing exceptional. Service was a bit slow, but overall, it was an okay experience.",
+      "I was really disappointed with my visit to Le Comptoir de la Gastronomie. The food was overpriced for the quality, and the duck confit was dry and tasteless. The waiter seemed uninterested, and the overall experience was underwhelming.",
+      "Terrible experience at Le Comptoir de la Gastronomie. The service was rude, and we had to wait almost an hour for our food. When it finally arrived, it was cold and poorly seasoned. Definitely not worth the hype."
+    ]
+  },
+  {
+    "restaurant": "chez-leon-paris",
+    "adresse": "32 Rue Legendre, 75017 Paris France",
+    "reviews": [
+      "Wonderful and charming little restaurant with fantastic drinks and food. Service was first class as well. Highly recommend and will definitely return.\nExcellent place to unwind from the world and enjoy great food/drinks in a comfortable and warm atmosphere!!!!",
+      "God so amazing. Such simple fare but still delicious. I got a blood pudding sausage to die for and my friend got half a roasted chicken. With fries, Perrier and wine at under 40€ it was perfect. Decor is simple and so is the food."
+    ]
+  }
+]
