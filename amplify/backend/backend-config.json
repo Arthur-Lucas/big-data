@@ -50,6 +50,29 @@
     }
   },
   "function": {
+    "dynamoToS3": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "avis"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "bigdata"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "getRestaurant": {
       "build": true,
       "dependsOn": [
@@ -150,6 +173,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_dynamoToS3_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamoToS3"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamoToS3_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamoToS3"
+        }
+      ]
+    },
     "AMPLIFY_function_getRestaurant_deploymentBucketName": {
       "usedBy": [
         {
