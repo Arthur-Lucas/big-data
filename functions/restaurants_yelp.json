@@ -1,0 +1,83 @@
+[
+    {
+        "restaurant": {
+            "id": "-0iLH7iQNYtoURciDpJf6w",
+            "name": "Le Comptoir de la Gastronomie",
+            "rating": 4.5,
+            "review_count": 1398,
+            "phone": "+33 1 42 33 31 32",
+            "address": "34 rue Montmartre 75001 Paris France",
+            "categories": [
+                "French"
+            ]
+        },
+        "reviews": {
+            "reviews": "⚠️ Aucun avis disponible pour ce restaurant."
+        }
+    },
+    {
+        "restaurant": {
+            "id": "Yto6loHgpGQDhvZQllpXMA",
+            "name": "Le Bistro Marbeuf",
+            "rating": 4.0,
+            "review_count": 179,
+            "phone": "+33 1 47 20 94 80",
+            "address": "21 rue Marbeuf 75008 Paris France",
+            "categories": [
+                "French",
+                "Lyonnais"
+            ]
+        },
+        "reviews": {
+            "reviews": "⚠️ Aucun avis disponible pour ce restaurant."
+        }
+    },
+    {
+        "restaurant": {
+            "id": "u2QqHhwsXeWdh_yKY4kPtg",
+            "name": "Lili et Riton",
+            "rating": 4.3,
+            "review_count": 9,
+            "phone": "+33 1 43 20 93 52",
+            "address": "64 rue du Montparnasse 75014 Paris France",
+            "categories": [
+                "French"
+            ]
+        },
+        "reviews": {
+            "reviews": "⚠️ Aucun avis disponible pour ce restaurant."
+        }
+    },
+    {
+        "restaurant": {
+            "id": "DS99xpMkcoH9qCkstWmRAw",
+            "name": "Septime",
+            "rating": 4.3,
+            "review_count": 164,
+            "phone": "+33 1 43 67 38 29",
+            "address": "80 rue de Charonne 75011 Paris France",
+            "categories": [
+                "Modern European"
+            ]
+        },
+        "reviews": {
+            "reviews": "⚠️ Aucun avis disponible pour ce restaurant."
+        }
+    },
+    {
+        "restaurant": {
+            "id": "4OEhHYGyNN5DIxpdSTUy_A",
+            "name": "Restaurant le Meurice Alain Ducasse",
+            "rating": 4.2,
+            "review_count": 97,
+            "phone": "+33 1 44 58 10 55",
+            "address": "228 rue de Rivoli 75001 Paris France",
+            "categories": [
+                "French"
+            ]
+        },
+        "reviews": {
+            "reviews": "⚠️ Aucun avis disponible pour ce restaurant."
+        }
+    }
+]
