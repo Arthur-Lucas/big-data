@@ -47,7 +47,7 @@
         },
         "getRestaurant": {
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
-          "s3Key": "amplify-builds/getRestaurant-61646f536a7a4d62704e-build.zip"
+          "s3Key": "amplify-builds/getRestaurant-58704346745462743668-build.zip"
         }
       },
       "storage": {
