@@ -48,6 +48,10 @@
         "getRestaurant": {
           "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
           "s3Key": "amplify-builds/getRestaurant-58704346745462743668-build.zip"
+        },
+        "dynamoToS3": {
+          "deploymentBucketName": "amplify-bigdataproject-arthur-62e45-deployment",
+          "s3Key": "amplify-builds/dynamoToS3-6a77303666495a676e61-build.zip"
         }
       },
       "storage": {

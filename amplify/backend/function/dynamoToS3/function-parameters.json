@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "storage": {
+      "avis": [
+        "read"
+      ],
+      "bigdata": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
