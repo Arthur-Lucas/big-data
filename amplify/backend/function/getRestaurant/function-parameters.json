@@ -7,6 +7,11 @@
       ],
       "restaurant": [
         "read"
+      ],
+      "bigdata": [
+        "create",
+        "read",
+        "update"
       ]
     }
   }

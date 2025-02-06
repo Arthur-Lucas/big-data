@@ -39,6 +39,10 @@
     "storagerestaurantStreamArn": {
       "Type": "String",
       "Default": "storagerestaurantStreamArn"
+    },
+    "storagebigdataBucketName": {
+      "Type": "String",
+      "Default": "storagebigdataBucketName"
     }
   },
   "Conditions": {
@@ -111,6 +115,9 @@
             },
             "STORAGE_RESTAURANT_STREAMARN": {
               "Ref": "storagerestaurantStreamArn"
+            },
+            "STORAGE_BIGDATA_BUCKETNAME": {
+              "Ref": "storagebigdataBucketName"
             }
           }
         },
@@ -273,6 +280,44 @@
                         "Ref": "storagerestaurantArn"
                       },
                       "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": "s3:ListBucket",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Ref": "storagebigdataBucketName"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Ref": "storagebigdataBucketName"
+                      },
+                      "/*"
                     ]
                   ]
                 }

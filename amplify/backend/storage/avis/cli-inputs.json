@@ -5,6 +5,14 @@
     "fieldName": "idavis",
     "fieldType": "string"
   },
-  "gsi": [],
+  "gsi": [
+    {
+      "name": "idrestaurant",
+      "partitionKey": {
+        "fieldName": "idrestaurant",
+        "fieldType": "string"
+      }
+    }
+  ],
   "triggerFunctions": []
 }

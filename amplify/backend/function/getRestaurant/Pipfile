@@ -8,5 +8,7 @@ verify_ssl = true
 [packages]
 src = {editable = true, path = "./src"}
 
+matplotlib = {version = "==3.10.0", markers = "implementation_name == 'cpython' and sys_platform == 'linux'"}
+
 [requires]
 python_version = "3.13"

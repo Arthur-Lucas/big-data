@@ -70,6 +70,13 @@
           ],
           "category": "storage",
           "resourceName": "restaurant"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "bigdata"
         }
       ],
       "providerPlugin": "awscloudformation",
